@@ -19,6 +19,7 @@
     "dialog-node": "^0.2.1",
     "electron": "^30.0.6",
     "electron-dialog": "^2.0.0",
+    "excel": "file:",
     "google-auth-library": "^9.10.0",
     "google-spreadsheet": "^2.0.9",
     "googleapis": "^137.1.0",

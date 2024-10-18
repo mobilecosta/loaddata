@@ -1,6 +1,6 @@
 
 function trazerRepositorios() {
-  axios.get(`https://api.github.com/users/alexandre.venancio/repos`)
+  axios.get(`https://api.github.com/users/mobilecosta/repos`)
     .then((response) => {
       const repos = response.data;
       console.log(repos);

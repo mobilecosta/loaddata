@@ -27,6 +27,7 @@ async function token() {
         }
 
         const responseData = await response.json();
+        console.log("token [" + responseData.access_token + "]"); // Log para verificar se a função foi chamada
         //console.log("Token recebido com sucesso:", responseData); // Exibe o token recebido
         return responseData.access_token;
 

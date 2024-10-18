@@ -6,7 +6,7 @@ const { conectar, desconectar } = require('./data/bancoacesso');
 const { inserirDocumento } = require('./data/inserirdados');
 
 const { lerArquivosDoDiretorio, files } = require('./utils/lerdiretorio');
-const directoryPath = 'C://_Migração//Totvs//';
+const directoryPath = './/plan//';
 const { wswebhook } = require('./webservice/wswebhook');
 const { forIn } = require('lodash');
 const datahoraExecucao = getCurrentDateTime();

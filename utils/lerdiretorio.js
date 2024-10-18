@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const directoryPath = 'C://_Migração//Totvs';
+const directoryPath = './/plan//';
 
 // Função para ler arquivos de um diretório e retornar um array com os nomes dos arquivos
 function lerArquivosDoDiretorio(diretorio) {
