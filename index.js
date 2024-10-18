@@ -1,6 +1,6 @@
 const reader = require('xlsx');
 const fs = require('fs');
-const path = './planilha_matriz/tabelas.xlsx';
+const path = './/plan//planilha_matriz//tabelas.xlsx';
     
 const { conectar, desconectar } = require('./data/bancoacesso');
 const { inserirDocumento } = require('./data/inserirdados');
