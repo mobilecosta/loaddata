@@ -1,0 +1,51 @@
+const fetch = require('node-fetch');
+const retry = require('async-retry');
+
+async function wswebhook(tabela, res) {
+    const data = { table: tabela, pk: '10305844000102', fields: res };
+
+    if (!isValidJSON(JSON.stringify(data))) {
+        console.error("Invalid JSON data:", data);
+        return;
+    }
+
+    try {
+        await retry(async (bail) => {
+            const response = await fetch('http://172.24.35.108:8037/rest/api/backoffice/Incorporador/v1/WebHookInc/', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Non-ok response: ${response.status} ${response.statusText}`);
+            }
+
+            const responseData = await response.json();
+            //console.log("Success:", responseData);
+        }, {
+            retries: 10, // Numero de retries
+            minTimeout: 1000, // Minimum delay between retries (in ms)
+            maxTimeout: 21000, // Maximum delay between retries (in ms)
+            onRetry: (error, attempt) => {
+                console.log(`Retrying... Attempt ${attempt}. Error:`, error.message);
+            }
+        });
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
+}
+
+// Função para verificar se o JSON é válido
+function isValidJSON(jsonString) {
+    try {
+        JSON.parse(jsonString);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+module.exports = { wswebhook };

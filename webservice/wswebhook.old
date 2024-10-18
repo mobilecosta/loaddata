@@ -1,0 +1,34 @@
+function wswebhook(tabela, res) {
+
+    const data = { table: tabela, pk: '10305844000102' ,fields: res };
+
+    if (isValidJSON(data)) {
+        return;
+    }
+                
+    fetch('http://172.24.35.108:8037/rest/api/backoffice/Incorporador/v1/WebHookInc/', {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("Success:", data);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+}
+
+//Verificar se o json é valido, alguns dados das planilhas estão quebrando o conteudo
+function isValidJSON(jsonString) {
+    try {
+        JSON.parse(jsonString);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+module.exports = { wswebhook }
